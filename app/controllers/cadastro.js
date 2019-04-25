@@ -23,6 +23,10 @@ module.exports.cadastrar = function(application, req, res) {
     //criando objeto de usuario e enviando os dados do controller para o model
     var UsuariosDAO = new application.app.models.UsuariosDAO(connectio);
     UsuariosDAO.inserirUsuario(dadosForm);
+    //geracao dos parametros
+    var JogoDAO = new application.app.models.JogoDAO(connectio);
+    JogoDAO.gerarParametros(dadosForm.usuario)
+    
 
     res.send("podemos cadastrar");
 

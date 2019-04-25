@@ -8,4 +8,14 @@ module.exports = function(application){
         application.app.controllers.jogo.sair(application, req , res);
         
     })
+
+    application.get("/suditos", (req, res)=>{
+        application.app.controllers.jogo.suditos(application, req , res);
+        
+    })
+
+    application.get("/pergaminhos", (req, res)=>{
+        application.app.controllers.jogo.pergaminhos(application, req , res);
+        
+    })
 }

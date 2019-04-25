@@ -46,6 +46,8 @@ UsuariosDAO.prototype.autenticar = function(usuario, req, res){
                 }
               
                 //  console.log(result)
+
+                mongoclient.close();
             });
 
             //mongoclient.close();
