@@ -18,4 +18,15 @@ module.exports = function(application){
         application.app.controllers.jogo.pergaminhos(application, req , res);
         
     })
+
+    application.post("/ordenar_acao_sudito", (req, res)=>{
+
+        application.app.controllers.jogo.ordenar_acao_sudito(application,req,res);
+
+    })
+
+    application.get("/revogar_ordem", (req, res)=>{
+        application.app.controllers.jogo.revogar(application, req , res);
+        
+    })
 }

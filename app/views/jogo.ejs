@@ -21,6 +21,8 @@
 			})
 
 			$("#btn-suditos").click(function(){
+				$("#msg").hide();
+
 				$.ajax({
 					url: "/suditos",
 					method: "get",
@@ -31,16 +33,41 @@
 				})
 			})
 			$("#btn-pergaminho").click(function(){
+				$("#msg").hide();
+
 				$.ajax({
 					url: "/pergaminhos",
 					method: "get",
 					success: function(data){
 						$("#acoes").html(data);
+						clearTimeout(timeId);
+						cronometro();
 					}
 
 				})
+
+
 			})
 		})
+
+		var timeId = null;
+
+		function cronometro(){
+			$(".tempo_restante").each(function(){
+				var segundos = $(this).html();
+				var segundos_atuais = parseInt(segundos) -1;
+
+				if(segundos_atuais < 0){
+					window.location.href = "/jogo?=C";
+				}else{
+
+					$(this).html(segundos_atuais);
+				}
+
+			})
+
+			timeId = setTimeout("cronometro()",1000);
+		}
 	</script>
 
 	</head>
@@ -56,6 +83,33 @@
 		</nav>
 
 	    <div class="container">
+
+				<% if(msg == "A") { %>
+					<div class="alert alert-danger" id="msg">
+						<strong> Operação inválida!</strong>
+
+					</div>
+				<%}%>
+
+				<% if(msg == "B") { %>
+					<div class="alert alert-info" id="msg">
+						<strong> Ação realizada com sucesso!</strong>
+
+					</div>
+				<%}%>
+				<% if(msg == "C") { %>
+					<div class="alert alert-info" id="msg">
+						<strong> Ação ordenada finalizada com sucesso!</strong>
+
+					</div>
+				<%}%>
+				<% if(msg == "D") { %>
+					<div class="alert alert-info" id="msg">
+						<strong> Ação ordenada revogada com sucesso!</strong>
+
+					</div>
+				<%}%>
+
 	    	
 			<div class="row">
 	    		<div class="col-sm-3 casa">
